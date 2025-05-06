@@ -13,7 +13,7 @@ void menu(void) {
 }
 
 void fibonacci(void) {
-  int n,proximo,a = 0, b = 1;
+  int n;
   printf("Digite a quantidade de termos da sequência de Fibonacci (1 a 50): ");
   scanf("%d", &n);
 
@@ -24,14 +24,22 @@ void fibonacci(void) {
   }
 
 
-  printf("Sequência de Fibonacci: ");
+  int fibonacci[n];
 
-  for (int i = 0; i <= n-1; i++) {
-    printf("%d ", a);
-        proximo = a + b;
-        a = b;
-        b = proximo;
-  }
+    for (int i = 0; i < n; i++) {
+        if (i == 0) {
+            fibonacci[i] = 0;
+        } else if (i == 1) {
+            fibonacci[i] = 1;
+        } else {
+            fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+        }
+    }
+
+    printf("Sequência de Fibonacci com %d termos:\n", n);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", fibonacci[i]);
+    }
 }
 
 int main() {
