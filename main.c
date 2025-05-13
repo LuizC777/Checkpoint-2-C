@@ -28,6 +28,7 @@ void fibonacci(void) {
 
   if (choose > 50 || choose < 1) {
     printf("Número inválido, tente novamente.");
+    return;
   }
 
   printf("Sequência de Fibonacci: ");
@@ -45,6 +46,7 @@ void fatoriais(void) {
 
   if (choose > 20 || choose < 1) {
     printf("Número inválido, tente novamente.");
+    return;
   }
 
   int array[20] = {1};
@@ -80,6 +82,39 @@ void palindromo(void) {
   }
 }
 
+void substring(void) {
+  printf("Digite uma palavra: ");
+  char word[50];
+  scanf("%s", word);
+
+  printf("Digite uma substring: ");
+  char substring[50];
+  scanf("%s", substring);
+
+  int length_word = strlen(word);
+  int length_substring = strlen(substring);
+  int found = 0;
+
+  for (int i = 0; i <= length_word - length_substring; i++) {
+    int match = 1;
+    for (int j = 0; j < length_substring; j++) {
+      if (word[i + j] != substring[j]) {
+        match = 0;
+        break;
+      }
+    }
+    if (match) {
+      found = 1;
+      printf("A segunda string está contida na primeira.\n");
+      break;
+    }
+  }
+
+  if (!found) {
+    printf("A segunda string NÃO está contida na primeira.\n");
+  }
+}
+
 int main() {
     setlocale(LC_ALL, "pt_BR.UTF-8");
 
@@ -95,11 +130,14 @@ int main() {
             case 3:
                 palindromo();
                 break;
+            case 4:
+                substring();
+                break;
             case 5:
                 return 0;
                 break;
         }
     }
 
-  return 0;
+  return 0;
 }
