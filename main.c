@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
+#include <string.h>
 
-void menu(void) {
-  printf("===== MENU DE EXERCÍCIOS ===== \n");
+int menu(void) {
+  printf("\n\n===== MENU DE EXERCÍCIOS ===== \n");
   printf("1 - Sequência de Fibonacci; \n");
   printf("2 - Fatoriais; \n");
   printf("3 - Verificar Palíndromo;\n");
@@ -10,48 +12,94 @@ void menu(void) {
   printf("5 - Sair \n");
 
   printf("\n Escolha uma opção: ");
+
+  int choice;
+  scanf("%d", &choice);
+  return choice;
 }
 
 void fibonacci(void) {
-  int n;
   printf("Digite a quantidade de termos da sequência de Fibonacci (1 a 50): ");
-  scanf("%d", &n);
+  int choose;
+  scanf("%d", &choose);
 
-  while (n<1 || n>50){
-    printf("Número inválido\n");
-    printf("Digite a quantidade de termos da sequência de Fibonacci (1 a 50): ");
-    scanf("%d", &n);
+  int t1 = 0, t2 = 1;
+  int array[50] = {t1, t2};
+
+  if (choose > 50 || choose < 1) {
+    printf("Número inválido, tente novamente.");
   }
 
+  printf("Sequência de Fibonacci: ");
 
-  int fibonacci[n];
+  for (int i = 0; i <= choose - 1; i++) {
+    array[i + 2] = array[i] + array[i + 1];
+    printf("%d ", array[i]);
+  }
+}
 
-    for (int i = 0; i < n; i++) {
-        if (i == 0) {
-            fibonacci[i] = 0;
-        } else if (i == 1) {
-            fibonacci[i] = 1;
-        } else {
-            fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
-        }
+void fatoriais(void) {
+  printf("Digite um número inteiro (1 a 20): ");
+  int choose;
+  scanf("%d", &choose);
+
+  if (choose > 20 || choose < 1) {
+    printf("Número inválido, tente novamente.");
+  }
+
+  int array[20] = {1};
+
+  printf("Fatoriais: ");
+
+  for (int i = 1; i <= choose; i++) {
+    array[i] = array[i - 1] * i;
+    printf("\n%d! = %d", i, array[i]);
+  }
+
+}
+
+void palindromo(void) {
+  printf("Digite uma palavra: ");
+  char word[50];
+  scanf("%s", word);
+
+  int length = strlen(word);
+  int is_palindrome = 1;
+
+  for (int i = 0; i < length/2; i++) {
+    if (word[i] != word[length - 1 - i]) {
+      is_palindrome = 0;
+      break;
     }
+  }
 
-    printf("Sequência de Fibonacci com %d termos:\n", n);
-    for (int i = 0; i < n; i++) {
-        printf("%d ", fibonacci[i]);
-    }
+  if (is_palindrome) {
+    printf("A palavra é um palíndromo.\n");
+  } else {
+    printf("A palavra não é um palíndromo.\n");
+  }
 }
 
 int main() {
-  menu();
-  int choice;
-  scanf("%d", &choice);
+    setlocale(LC_ALL, "pt_BR.UTF-8");
 
-  switch (choice) {
-    case 1:
-      fibonacci();
-      break;
-  }
+
+    while (1){
+        switch (menu()) {
+            case 1:
+                fibonacci();
+                break;
+            case 2:
+                fatoriais();
+                break;
+            case 3:
+                palindromo();
+                break;
+            case 5:
+                return 0;
+                break;
+        }
+    }
 
   return 0;
 }
