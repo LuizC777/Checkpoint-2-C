@@ -45,19 +45,19 @@ void fatoriais(void) {
   scanf("%d", &choose);
 
   if (choose > 20 || choose < 1) {
-    printf("Número inválido, tente novamente.");
+    printf("Número inválido, tente novamente.\n");
     return;
   }
 
-  int array[20] = {1};
+  unsigned long long array[21]; // Índice de 0 a 20
+  array[0] = 1;
 
-  printf("Fatoriais: ");
+  printf("Fatoriais:\n");
 
   for (int i = 1; i <= choose; i++) {
     array[i] = array[i - 1] * i;
-    printf("\n%d! = %d", i, array[i]);
+    printf("%d! = %llu\n", i, array[i]);
   }
-
 }
 
 void palindromo(void) {
@@ -139,5 +139,5 @@ int main() {
         }
     }
 
-  return 0;
+    return 0;
 }
