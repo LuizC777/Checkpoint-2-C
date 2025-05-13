@@ -3,6 +3,11 @@
 #include <locale.h>
 #include <string.h>
 
+// integrantes:
+// Luiz Claro - RM 563014
+// Gabriel Romão - RM 563378
+// Raphael Talarico - RM 565219
+
 int menu(void) {
   printf("\n\n===== MENU DE EXERCÍCIOS ===== \n");
   printf("1 - Sequência de Fibonacci; \n");
